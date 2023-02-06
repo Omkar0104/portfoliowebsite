@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function getprojects() {
+        // write your code here
+        let projectLink;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          "https://api.github.com/users/Omkar0104/repos?sort=updated",
+          true
+        );
+        xhr.onload = function () {
+          let projectDetails = this.responseText;
+          let data = JSON.parse(projectDetails);
+          let count = 1;
+          for (ele of data) {
+            if (!ele.fork) {
+              let imgUrl;
+
+              let projectRepo = `https://github.com/Omkar0104/${ele.name}`;
+              if (ele.homepage) {
+                projectLink = ele.homepage;
+              } else {
+                projectLink = projectRepo;
+              }
+              let description;
+              if (ele.description == null) {
+                description = "Check out repository for more information";
+              } else if (ele.description.length > 60) {
+                description = `${ele.description.slice(
+                  0,
+                  60
+                )} <a href=${projectRepo}>Read More</a>`;
+              } else {
+                description = ele.description;
+              }
+
+              document.querySelector(".project-list").insertAdjacentHTML(
+                "beforeend",
+                `   <li
+                      class="project-item active"
+                    >
+                      <a href=${projectLink}>
+                        <figure class="project-img">
+                          <div class="project-item-icon-box">
+                            <ion-icon name="eye-outline"></ion-icon>
+                          </div>
+
+                          <img
+                            src="https://raw.githubusercontent.com/Omkar0104/${
+                              ele.name
+                            }/master/display.png"
+                            alt="orizon"
+                            loading="lazy"
+                          />
+                        </figure>
+
+                        <h3 class="project-title">${
+                          ele.name.charAt(0).toUpperCase() + ele.name.slice(1)
+                        }</h3>
+
+                        <p class="project-description">${description}</p>
+                      </a>
+                    </li>
+      `
+              );
+              count++;
+            }
+          }
+        };
+        xhr.send();
+      }
+      getprojects();
+    </script>
+  </body>
+</html>
