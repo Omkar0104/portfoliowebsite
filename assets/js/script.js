@@ -192,7 +192,7 @@ function displayBlog(result) {
     if (count == 10) {
       return;
     }
-    console.log(ele);
+    // console.log(ele);
     const words = ele.content.replace(/<img[^>]*>/g, "").split(/\s+/);
     const allowedWords = words.slice(0, 30);
     const allowedHtml = allowedWords.join(" ");
@@ -206,7 +206,7 @@ function displayBlog(result) {
       day: "numeric",
     };
     const formattedDate = date.toLocaleDateString("en-US", options);
-    console.log(ele.content);
+    // console.log(ele.content);
     document.querySelector(".blog-posts-list").insertAdjacentHTML(
       "beforeend",
       `<li class="blog-post-item">
