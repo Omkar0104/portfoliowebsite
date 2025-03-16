@@ -267,6 +267,13 @@ async function getprojects() {
           description = data[i].description;
         }
 
+
+        let imgSrc;
+        if (data[i].name === "linkedin-jobmailer") {
+          imgSrc = `https://raw.githubusercontent.com/Omkar0104/${data[i].name}/master/display.gif`;
+        } else {
+          imgSrc = `https://raw.githubusercontent.com/Omkar0104/${data[i].name}/master/display.png`;
+        }
         document.querySelector(".project-list").insertAdjacentHTML(
           "beforeend",
           `   <li
@@ -279,9 +286,7 @@ async function getprojects() {
                           </div>
 
                           <img
-                            src="https://raw.githubusercontent.com/Omkar0104/${
-                              data[i].name
-                            }/master/display.png"
+                            src=${imgSrc}
                             alt="orizon"
                             loading="lazy"
                           />
