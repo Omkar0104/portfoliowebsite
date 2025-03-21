@@ -269,7 +269,7 @@ async function getprojects() {
 
 
         let imgSrc;
-        if (data[i].name === "linkedin-jobmailer") {
+        if (data[i].name === "linkedin-jobmailer" || data[i].name ===  "DailyQuote") {
           imgSrc = `https://raw.githubusercontent.com/Omkar0104/${data[i].name}/master/display.gif`;
         } else {
           imgSrc = `https://raw.githubusercontent.com/Omkar0104/${data[i].name}/master/display.png`;
