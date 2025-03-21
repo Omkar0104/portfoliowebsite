@@ -1074,6 +1074,7 @@ main {
 .project-title,
 .project-description {
   margin-left: 10px;
+  margin-bottom: 5px;
 }
 
 .project-title {
